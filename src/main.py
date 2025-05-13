@@ -1,9 +1,10 @@
 from textnode import TextNode, TextType
 from htmlnode import HTMLNode
-from test3 import copy_static
+from copystatic import copy_static
 import os, os.path,shutil
 from generatepage import generate_page
 from generatepagesrecursive import generate_pages_recursive
+import sys
 
 
 def main():
@@ -13,9 +14,14 @@ def main():
     #node = HTMLNode(tag="div", value="Hello", props={"class": "container"})
     #print(node)  # Since you don't have a __str__ method, this will use __repr__
 
+    basepath = "/"
+
+    if len(sys.argv) >1 :
+        basepath = sys.argv[1]
+
 
     source = "static"
-    destination = "public"
+    destination = "docs"
 
     if os.path.exists(destination):
         shutil.rmtree(destination)
@@ -32,10 +38,10 @@ def main():
 
     dir_path_content = "content"
     template_path = "template.html"
-    dest_dir_path = "public"
+    dest_dir_path = "docs"
 
 
-    generate_pages_recursive(dir_path_content, template_path, dest_dir_path)
+    generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath)
 
 
 

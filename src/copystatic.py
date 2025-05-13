@@ -1,7 +1,7 @@
 import os,os.path
 import shutil
 src = "static"
-dest = "public"
+dest = "docs"
 
 
 
